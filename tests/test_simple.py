@@ -103,6 +103,29 @@ def test_Mean():
     interp.fitData(data, pos)
     numpy.testing.assert_almost_equal(mean, interp.mean)
 
+def test_Polynomial():
+    """Test polynomial interpolation on some fake parameters
+    """
+    import numpy
+    # Make a list of data vectors to "interpolate"
+    numpy.random.seed(123)
+    nstars = 100
+    nchips = 10
+    data = [ [ numpy.random.random(10) for i in range(nstars) ] for j in range(nchips) ]
+
+    # Give each data vector a position
+    pos = [ [ galsim.PositionD(numpy.random.random()*2048, numpy.random.random()*2048)
+              for i in range(nstars) ] for j in range(nchips) ]
+
+    # Use the piff.Polynomial interpolator
+    interp = piff.Polynomial(2)
+    interp.fitData(data, pos)
+
+    model = interp.interpolate(0,[1000,1000])
+    print model
+
+
+
 
 if __name__ == '__main__':
     test_Gaussian()
