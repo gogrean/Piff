@@ -274,7 +274,7 @@ ext=Extension("piff._piff",
               depends=headers,
               undef_macros = undef_macros)
 
-dependencies = ['numpy', 'six', 'cffi', 'fitsio']
+dependencies = ['numpy', 'six', 'fitsio']
 if py_version < '2.7':
     dependencies += ['argparse']
 
